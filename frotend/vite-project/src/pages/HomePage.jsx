@@ -2,10 +2,10 @@ import React from 'react'
 
 import HomePage  from './Pages/HomePage'; 
 import CreatePage from './Pages/CreatePage';
-import NoteDetailPage from './Pages/NoteDetailPage';
+import SkillDetailPage from './Pages/SkillDetailPage';
 
 
-const HomePage = () => {
+const App = () => {
   return (
     <div>
       <Routes>
