@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
+import { useNavigate} from "react-router-dom";
 
 const CreatePage = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  const [skillName, setSkillName] = useState('');
+  const [level, setLevel]= useState('Beginner')
+  const navigate = useNavigate();
 
-export default CreatePage
+}
