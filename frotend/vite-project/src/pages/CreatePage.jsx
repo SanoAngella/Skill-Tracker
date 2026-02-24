@@ -3,14 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 const CreatePage = () => {
   const [skillName, setSkillName] = useState('');
-  const [level, setLevel] = useState('Beginner');
+  const [status, setStatus] = useState('Beginner');
   const navigate = useNavigate();
 
   const handleCreate = () => {
-    
-    setTimeout(() => {
-      navigate("/");
-    }, 500);
+    // We will add the database save logic here next
+    navigate("/");
   };
 
   return (
