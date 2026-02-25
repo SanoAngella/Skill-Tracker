@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
-  const [skills, setSkills] = useState([]); // This starts as an empty list
+  const [skills, setSkills] = useState([]);
 
-  // This runs automatically when the page loads
   useEffect(() => {
     fetch("http://localhost:5002/api/skills")
       .then((res) => res.json())
@@ -23,7 +22,6 @@ const HomePage = () => {
 
       <hr />
 
-      {/* This checks if you have skills. If not, it shows a message */}
       {skills.length === 0 ? (
         <p>No skills added yet. Click the button above to start!</p>
       ) : (
