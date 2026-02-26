@@ -4,7 +4,6 @@ import { useParams, Link } from "react-router-dom";
 const SkillDetailPage = () => {
   const { id } = useParams();
   
-  // 1. Add state to store the skill data we find
   const [skill, setSkill] = useState(null);
 
   // 2. Add a trigger to fetch the skill from the backend when the page opens
@@ -13,7 +12,7 @@ const SkillDetailPage = () => {
       .then((res) => res.json())
       .then((data) => setSkill(data))
       .catch((err) => console.log("Error fetching skill:", err));
-  }, [id]); // Only re-run if the ID in the URL changes
+  }, [id]); 
 
   return (
     <div style={{ padding: "20px" }}>
