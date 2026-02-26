@@ -1,21 +1,38 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
 const SkillDetailPage = () => {
-  // This "grabs" the id from the URL (e.g., /skill/123)
   const { id } = useParams();
+  
+  // 1. Add state to store the skill data we find
+  const [skill, setSkill] = useState(null);
+
+  // 2. Add a trigger to fetch the skill from the backend when the page opens
+  useEffect(() => {
+    fetch(`http://localhost:5002/api/skills/${id}`)
+      .then((res) => res.json())
+      .then((data) => setSkill(data))
+      .catch((err) => console.log("Error fetching skill:", err));
+  }, [id]); // Only re-run if the ID in the URL changes
 
   return (
     <div style={{ padding: "20px" }}>
       <h1>Skill Details</h1>
-      <p>Currently viewing Skill ID: <strong>{id}</strong></p>
-      
-      <hr />
-      <p style={{ color: "gray" }}>
-        (Next, we will use this ID to fetch the full skill data from the database.)
-      </p>
 
+      {/* 3. Logic to show a loading message until the data arrives */}
+      {!skill ? (
+        <p>Loading skill information...</p>
+      ) : (
+        <div style={{ border: "1px solid #ddd", padding: "15px", borderRadius: "8px" }}>
+          <h2>Name: {skill.name}</h2>
+          <p>Proficiency Level: <strong>{skill.level}</strong></p>
+          <p>Database ID: {id}</p>
+        </div>
+      )}
+
+      <br />
       <Link to="/">
-        <button>Back to Home</button>
+        <button style={{ cursor: "pointer", padding: "8px 16px" }}>Back to Home</button>
       </Link>
     </div>
   );
