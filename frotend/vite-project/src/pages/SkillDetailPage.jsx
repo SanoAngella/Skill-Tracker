@@ -1,53 +1,52 @@
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useParams, Link useNavigate } from "react-router-dom";
 
 const SkillDetailPage = () => {
   const { id } = useParams();
-  
+  const navigate = useNavigate();
+
   const [skill, setSkill] = useState(null);
 
-  // 2. Add a trigger to fetch the skill from the backend when the page opens
   useEffect(() => {
-    fetch(`http://localhost:5002/api/skills/${id}`)
+    fetch(`http://localhost:8080/api/skills/${id}`)
       .then((res) => res.json())
       .then((data) => setSkill(data))
-      .catch((err) => console.log("Error fetching skill:", err));
-  }, [id]); 
+      .catch((err) => console.error('Error fetching skill:', err));
+  }, [id]);
 
+  if(!skill) {
+    return <div>Loading...</div>
+  }
+  
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:5002/api/skills/${id}`, {
+      const response = await fetch(`http://localhost:8080/api/skills/${id}`, {
         method: 'DELETE',
-      });
+      })
 
       if (response.ok) {
         alert("Skill deleted successfully!");
-        window.location.href = "/"; // Redirect to home page
+        navigate("/");
+      } else {
+        alert(`Failed to delete skill: ${response.statusText}`);
       }
+    } catch (error) {
+      console.error('Error deleting skill:', error);
+      alert("An error occurred while deleting the skill.");
     }
   }
-
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Skill Details</h1>
+    <div style={{ padding: "20px"}}>
+      <h1>Skill Details</h1> 
 
-      {/* 3. Logic to show a loading message until the data arrives */}
       {!skill ? (
         <p>Loading skill information...</p>
-      ) : (
-        <div style={{ border: "1px solid #ddd", padding: "15px", borderRadius: "8px" }}>
+      ) : ( 
+        <div style={{ border: "1px solid #dddee0", borderRadius: "8px", padding: "20px", maxWidth: "400px" }}>
           <h2>Name: {skill.name}</h2>
           <p>Proficiency Level: <strong>{skill.level}</strong></p>
-          <p>Database ID: {id}</p>
-        </div>
       )}
 
-      <br />
-      <Link to="/">
-        <button style={{ cursor: "pointer", padding: "8px 16px" }}>Back to Home</button>
-      </Link>
     </div>
-  );
-};
-
-export default SkillDetailPage;
+  )
+}
