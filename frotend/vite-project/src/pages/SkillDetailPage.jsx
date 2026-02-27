@@ -14,6 +14,19 @@ const SkillDetailPage = () => {
       .catch((err) => console.log("Error fetching skill:", err));
   }, [id]); 
 
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`http://localhost:5002/api/skills/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        alert("Skill deleted successfully!");
+        window.location.href = "/"; // Redirect to home page
+      }
+    }
+  }
+
   return (
     <div style={{ padding: "20px" }}>
       <h1>Skill Details</h1>
