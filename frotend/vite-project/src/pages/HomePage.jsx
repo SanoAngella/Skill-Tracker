@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getSkills } from "../api/skillsApi";
 
 const HomePage = () => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5002/api/skills")
-      .then((res) => res.json())
+    getSkills()
       .then((data) => setSkills(data))
-      .catch((err) => console.log("Error fetching skills:", err));
+      .catch((err) => console.log("Error fetching skills:", err.message));
   }, []);
 
   return (
@@ -28,8 +28,9 @@ const HomePage = () => {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "15px" }}>
           {skills.map((skill) => (
             <div key={skill._id} style={{ border: "1px solid #ccc", padding: "10px", borderRadius: "8px" }}>
-              <h3>{skill.name}</h3>
-              <p>Level: <strong>{skill.level}</strong></p>
+              <h3>{skill.title}</h3>
+              <p>Proficiency: <strong>{skill.proficiency}</strong></p>
+              <p>Status: <strong>{skill.status}</strong></p>
               <Link to={`/skill/${skill._id}`}>View Details</Link>
             </div>
           ))}

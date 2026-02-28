@@ -1,5 +1,35 @@
 import Skill from '../models/skillModel.js';
 
+const normalizeCreateInput = (body = {}) => {
+   const title = (body.title ?? body.name ?? "").trim();
+   const proficiencyRaw = body.proficiency ?? body.level;
+   const proficiency = Number(proficiencyRaw);
+   const status = body.status ?? "To-Learn";
+
+   return { title, proficiency, status };
+};
+
+const validateCreateInput = ({ title, proficiency, status }) => {
+   if (!title) {
+      return "Title is required";
+   }
+
+   if (!Number.isFinite(proficiency)) {
+      return "Proficiency must be a number";
+   }
+
+   if (proficiency < 0 || proficiency > 10) {
+      return "Proficiency must be between 0 and 10";
+   }
+
+   const allowedStatuses = ["To-Learn", "Learning", "Mastered"];
+   if (!allowedStatuses.includes(status)) {
+      return "Status must be one of: To-Learn, Learning, Mastered";
+   }
+
+   return null;
+};
+
 // Get all skills 
 export const getAllSkills = async (req, res) => {
    try {
@@ -26,10 +56,11 @@ export const getSkillById = async (req, res) => {
 
 // Create a new skill
 export const createSkills = async (req, res) => {
-   const { title, proficiency, status } = req.body;
+   const { title, proficiency, status } = normalizeCreateInput(req.body);
+   const validationError = validateCreateInput({ title, proficiency, status });
 
-   if (!title || !proficiency || !status) {
-      return res.status(400).json({ success: false, message: "Please provide valid fields" });
+   if (validationError) {
+      return res.status(400).json({ success: false, message: validationError });
    }
 
    try {
@@ -38,7 +69,10 @@ export const createSkills = async (req, res) => {
       res.status(201).json({ success: true, data: newSkill });
    } catch (error) {
       console.error("Error creating skill:", error.message);
-      res.status(500).json({ success: false, message: "Server Error" });
+      if (error.code === 11000) {
+         return res.status(409).json({ success: false, message: "Skill title already exists" });
+      }
+      res.status(500).json({ success: false, message: "Server Error", error: error.message });
    }
 };
 
