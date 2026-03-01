@@ -1,16 +1,35 @@
-# React + Vite
+Skill Tracker - MERN Application
+A full-stack application built to track personal professional development. Users can create, view, and delete skills, categorized by proficiency levels.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ Tech Stack
+Frontend: React (Vite), React Router
 
-Currently, two official plugins are available:
+Backend: Node.js, Express
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Database: MongoDB
 
-## React Compiler
+Version Control: Git & GitHub
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Features
+View All Skills: A dynamic dashboard fetching data from the backend.
 
-## Expanding the ESLint configuration
+Add New Skills: Form to input skill names and proficiency levels (Beginner, Intermediate, Advanced).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Skill Details: Dedicated pages for each skill using dynamic routing (/skill/:id).
+
+Delete Functionality: Clean removal of skills from the database.
+
+ Getting Started
+1. Prerequisites
+Ensure you have Node.js and MongoDB installed and running on your machine.
+
+2. Backend Setup
+3. Frontend Setup
+
+ Project Structure
+/frotend/vite-project/src/pages: Contains HomePage.jsx, CreatePage.jsx, and SkillDetailPage.jsx.
+
+/backend: Contains the Express server, API routes, and MongoDB connection logic.
+/frotend/vite-project/src/pages: Contains HomePage.jsx, CreatePage.jsx, and SkillDetailPage.jsx.
+
+/backend: Contains the Express server, API routes, and MongoDB connection logic.
