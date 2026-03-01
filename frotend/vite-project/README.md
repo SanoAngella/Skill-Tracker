@@ -32,4 +32,4 @@ Ensure you have Node.js and MongoDB installed and running on your machine.
 /backend: Contains the Express server, API routes, and MongoDB connection logic.
 /frotend/vite-project/src/pages: Contains HomePage.jsx, CreatePage.jsx, and SkillDetailPage.jsx.
 
-/backend: Contains the Express server, API routes, and MongoDB connection logic.
+/backend: Contains the Express server, API routes, and MongoDB connection log
