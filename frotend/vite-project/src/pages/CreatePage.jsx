@@ -8,7 +8,8 @@ const CreatePage = () => {
   const [status, setStatus] = useState("To-Learn");
   const navigate = useNavigate();
 
-  const handleCreate = async (e) => {
+  
+const handleCreate = async (e) => {
     if (e) e.preventDefault();
 
     try {
