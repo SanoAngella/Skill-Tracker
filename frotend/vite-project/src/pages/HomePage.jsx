@@ -12,26 +12,26 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <header style={{ display: "flex", justifyContent: "space-between" }}>
+    <div>
+      <header className="page-header">
         <h1>My Skills</h1>
-        <Link to="/create">
-          <button style={{ padding: "10px", cursor: "pointer" }}>+ Add New Skill</button>
+        <Link to="/create" className="text-link">
+          <button className="btn btn-primary">+ Add New Skill</button>
         </Link>
       </header>
 
       <hr />
 
       {skills.length === 0 ? (
-        <p>No skills added yet. Click the button above to start!</p>
+        <p className="empty-state">No skills added yet. Click the button above to start.</p>
       ) : (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "15px" }}>
+        <div className="grid">
           {skills.map((skill) => (
-            <div key={skill._id} style={{ border: "1px solid #ccc", padding: "10px", borderRadius: "8px" }}>
+            <div key={skill._id} className="card">
               <h3>{skill.title}</h3>
               <p>Proficiency: <strong>{skill.proficiency}</strong></p>
               <p>Status: <strong>{skill.status}</strong></p>
-              <Link to={`/skill/${skill._id}`}>View Details</Link>
+              <Link className="text-link" to={`/skill/${skill._id}`}>View Details</Link>
             </div>
           ))}
         </div>
