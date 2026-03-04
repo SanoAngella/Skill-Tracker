@@ -15,9 +15,7 @@ const HomePage = () => {
     <div>
       <header className="page-header">
         <h1>My Skills</h1>
-        <Link to="/create" className="text-link">
-          <button className="btn btn-primary">+ Add New Skill</button>
-        </Link>
+        <Link to="/create" className="btn btn-primary btn-link">+ Add New Skill</Link>
       </header>
 
       <hr />
