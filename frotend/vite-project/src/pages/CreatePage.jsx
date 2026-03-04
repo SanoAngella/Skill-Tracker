@@ -8,8 +8,7 @@ const CreatePage = () => {
   const [status, setStatus] = useState("To-Learn");
   const navigate = useNavigate();
 
-  
-const handleCreate = async (e) => {
+  const handleCreate = async (e) => {
     if (e) e.preventDefault();
 
     try {
@@ -23,38 +22,38 @@ const handleCreate = async (e) => {
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "400px" }}>
+    <div className="card form-card">
       <h1>Create New Skill</h1>
       
-      <div style={{ marginBottom: "15px" }}>
-        <label>Skill Title:</label><br />
-        <input 
+      <div className="field">
+        <label className="label">Skill Title</label>
+        <input
+          className="input"
           type="text" 
           placeholder="e.g. JavaScript" 
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          style={{ width: "100%", padding: "8px", marginTop: "5px" }}
         />
       </div>
 
-      <div style={{ marginBottom: "15px" }}>
-        <label>Proficiency (1-10):</label><br />
+      <div className="field">
+        <label className="label">Proficiency (1-10)</label>
         <input
+          className="input"
           type="number"
           min="1"
           max="10"
           value={proficiency}
           onChange={(e) => setProficiency(e.target.value)}
-          style={{ width: "100%", padding: "8px", marginTop: "5px" }}
         />
       </div>
 
-      <div style={{ marginBottom: "15px" }}>
-        <label>Status:</label><br />
-        <select 
+      <div className="field">
+        <label className="label">Status</label>
+        <select
+          className="select"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          style={{ width: "100%", padding: "8px", marginTop: "5px" }}
         >
           <option value="To-Learn">To-Learn</option>
           <option value="Learning">Learning</option>
@@ -62,9 +61,9 @@ const handleCreate = async (e) => {
         </select>
       </div>
       
-      <button 
+      <button
+        className="btn btn-primary"
         onClick={handleCreate}
-        style={{ padding: "10px 20px", cursor: "pointer", backgroundColor: "#4CAF50", color: "white", border: "none", borderRadius: "4px" }}
       >
         Save Skill
       </button>

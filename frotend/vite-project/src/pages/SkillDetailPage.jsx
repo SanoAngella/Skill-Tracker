@@ -25,25 +25,25 @@ const SkillDetailPage = () => {
   };
 
   if (!skill) {
-    return <div style={{ padding: "20px" }}>Loading skill information...</div>;
+    return <div>Loading skill information...</div>;
   }
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       <h1>Skill Details</h1>
 
-      <div style={{ border: "1px solid #dddee0", borderRadius: "8px", padding: "20px", maxWidth: "450px" }}>
+      <div className="card form-card">
         <h2>Title: {skill.title}</h2>
         <p>Proficiency: <strong>{skill.proficiency}</strong></p>
         <p>Status: <strong>{skill.status}</strong></p>
-        <div style={{ display: "flex", gap: "10px", marginTop: "16px" }}>
+        <div className="actions">
           <button
+            className="btn btn-danger"
             onClick={handleDelete}
-            style={{ padding: "10px 14px", cursor: "pointer", backgroundColor: "#c62828", color: "white", border: "none", borderRadius: "4px" }}
           >
             Delete Skill
           </button>
-          <Link to="/" style={{ display: "inline-flex", alignItems: "center" }}>
+          <Link className="text-link" to="/">
             Back to Home
           </Link>
         </div>
