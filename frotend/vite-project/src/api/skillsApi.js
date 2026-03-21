@@ -41,4 +41,4 @@ export const deleteSkill = async (id) => {
     method: "DELETE",
   });
   await parseResponse(response);
-};
+}
