@@ -5,7 +5,6 @@ import CreatePage from './pages/CreatePage';
 import SkillDetailPage from "./pages/SkillDetailPage";
 import "./App.css";
 
-// Simple Navbar component for navigation
 const Navbar = () => (
   <nav className="navbar">
     <Link className="nav-link" to="/">Home</Link>
