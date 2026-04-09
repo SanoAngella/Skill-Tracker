@@ -1,5 +1,4 @@
 import Skill from '../models/skillModel.js';
-
 const normalizeCreateInput = (body = {}) => {
    const title = (body.title ?? body.name ?? "").trim();
    const proficiencyRaw = body.proficiency ?? body.level;
